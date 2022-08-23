@@ -1,7 +1,7 @@
 #!/bin/bash
 
 repo=$1
-release_version="v$2"
+release_version=$2
 token=$3
 
 echo "Checking release version ${release_version} exists or not."

@@ -46,8 +46,8 @@ jobs:
         id: get-version
         run: |
           version=$(cat package.json | jq '.version' --raw-output)
-          echo "Version: ${version}"
-          echo "::set-output name=version::$version"
+          echo "Version: v${version}"
+          echo "::set-output name=version::v${version}"
 
       - name: Check if release exists
         id: release-check
@@ -70,8 +70,8 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          name: v${{ needs.release-check.outputs.version }}
-          tag_name: v${{ needs.release-check.outputs.version }}
+          name: ${{ needs.release-check.outputs.version }}
+          tag_name: ${{ needs.release-check.outputs.version }
           generate_release_notes: true
 
   major_version_update:
@@ -79,4 +79,4 @@ jobs:
     needs: [release, release-check]
     uses: ./.github/workflows/major-release.yaml
     with:
-      TAG_NAME: v${{ needs.release-check.outputs.version }}
+      TAG_NAME: ${{ needs.release-check.outputs.version }}
