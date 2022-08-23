@@ -50,9 +50,9 @@ jobs:
       - name: Get Source Tag SHA
         id: source-tag-sha
         run: |
-          .github/scripts/check-release.sh \
+          .github/scripts/source-tag-sha.sh \
             ${{ github.repository }} \
-            ${TAG_NAME} \
+            ${{ steps.get-major-version.outputs.major_version }} \
             ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Major Release
@@ -67,8 +67,8 @@ jobs:
       - name: Update Major tag
         if: steps.check-release.outputs.release_exists == 'true'
         run: |
-          .github/scripts/check-release.sh \
+          .github/scripts/update-major-tag.sh \
             ${{ github.repository }} \
-            ${{ steps.source-tag-sha.outputs.sha }}
-            ${{ steps.get-major-version.outputs.major_version }}
+            ${{ steps.source-tag-sha.outputs.sha }} \
+            ${{ steps.get-major-version.outputs.major_version }} \
             ${{ secrets.GITHUB_TOKEN }}

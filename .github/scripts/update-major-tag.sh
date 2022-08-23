@@ -5,7 +5,7 @@ source_tag_sha=$2
 major_version=$3
 token=$4
 
-curl \
+curl -s \
     -X PATCH -L \
     -H "Accept: application/vnd.github+json" \
     -H "Authorization: Bearer ${token}" \

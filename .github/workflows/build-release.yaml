@@ -58,7 +58,7 @@ jobs:
             ${{ steps.get-version.outputs.version }} \
             ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Display warning
+      - name: Display warning if release exists
         if: steps.release-check.outputs.release_exists == 'true'
         run: echo "::warning title=Skipping Release::Release ${release_version} already exists. If you want to create new release please update the version in package.json"
 
