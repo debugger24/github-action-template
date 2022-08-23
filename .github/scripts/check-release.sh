@@ -15,7 +15,7 @@ exists=$(
 )
 
 if [[ "$exists" == true ]]; then
-    echo "::warning title=Skipping Release::Release ${release_version} already exists. If you want to create new release please update the version in package.json"
+    echo "Release ${release_version} already exists."
     echo '::set-output name=release_exists::true'
 else
     echo '::set-output name=release_exists::false'
