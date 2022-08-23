@@ -52,7 +52,7 @@ jobs:
         run: |
           .github/scripts/source-tag-sha.sh \
             ${{ github.repository }} \
-            ${{ steps.get-major-version.outputs.major_version }} \
+            ${TAG_NAME} \
             ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Major Release
